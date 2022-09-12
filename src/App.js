@@ -1,16 +1,18 @@
 import { Col, Spin } from "antd";
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+// import { useDispatch, useSelector } from "react-redux";
 import { getPokemonsWithDetails, setLoading } from "./actions";
 import { getPokemon } from "./api";
 import PokemonList from "./component/PokemonList";
 import Searcher from "./component/Searcher";
 import logo from "./statics/logo.svg";
 import "./App.css";
+import { get } from "immutable";
+import { useDispatch, useSelector } from "react-redux";
 
 function App() {
-  const pokemons = useSelector((state) => state.pokemons);
-  const loading = useSelector((state) => state.loading);
+  const pokemons = useSelector(state => get(state, 'pokemons')).toJS();
+  const loading = useSelector((state) => get(state, 'loading'));
   const dispatch = useDispatch();
 
   useEffect(() => {

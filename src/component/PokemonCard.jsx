@@ -1,4 +1,3 @@
-import { StarOutlined } from "@ant-design/icons";
 import { Card } from "antd";
 import Meta from "antd/lib/card/Meta";
 import { useDispatch } from "react-redux";

@@ -1,0 +1,7 @@
+.PokemonCard .ant-card{
+    background: #fafbff;
+}
+
+.PokemonCard img {
+    margin-bottom: 0 !important;
+}

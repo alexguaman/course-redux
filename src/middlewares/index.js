@@ -1,5 +1,6 @@
+import { SET_POKEMONS } from "../actions/types";
+
 export const logger = (store) => (next) => (action) => {
-    console.log(action);
     next(action);
 };
 
@@ -10,10 +11,14 @@ export const logger = (store) => (next) => (action) => {
 // };
 
 export const enumerated = (store) => (next) => (action) => {
-    const list = [ ...action.payload];    
-    const listUpdated = [];
-    let count = 0;    
-    list.forEach( (pokemon) => listUpdated.push({...pokemon, number: "#" + (++count).toString().padStart(3,'0') }));
-    const updatedAction = {...action, action: {...action.action, payload: listUpdated}}
-    next(updatedAction);
+    if (action.type === SET_POKEMONS) {
+        const list = [ ...action.payload];    
+        const listUpdated = [];
+        let count = 0;    
+        list.forEach( (pokemon) => listUpdated.push({...pokemon, number: "#" + (++count).toString().padStart(3,'0') }));
+        const updatedAction = {...action, action: {...action.action, payload: listUpdated}}
+        next(updatedAction);
+    } else {
+        next(action);
+    }
 };
